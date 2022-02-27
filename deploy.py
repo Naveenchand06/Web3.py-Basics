@@ -44,9 +44,11 @@ abi = compiled_sol["contracts"]["SimpleStorage.sol"]["SimpleStorage"]["abi"]
 # How to deploy it in a simulated environment
 # Answer: Ganache
 # For connecting to ganache
-w3 = Web3(Web3.HTTPProvider("http://127.0.0.1:7545"))
-chain_id = 1337
-my_address = "0x02c2d09e4e63217A321238581a2F75007F78a43A"
+w3 = Web3(
+    Web3.HTTPProvider("https://rinkeby.infura.io/v3/6a283268fbfa476ebe334b9158a15ff4")
+)
+chain_id = 4
+my_address = "0x2208BdA9c7AE26b28b24a5c5D89136bc38FD74Ee"
 # add '0x' before private key if it's not present
 private_key = os.getenv("PRIVATE_KEY")
 
@@ -74,19 +76,21 @@ transaction = SimpleStorage.constructor().buildTransaction(
 signed_txn = w3.eth.account.sign_transaction(transaction, private_key=private_key)
 
 # send this signed transaction
+print("Deploying Contract...")
 tx_hash = w3.eth.send_raw_transaction(signed_txn.rawTransaction)
+print("Waiting for TXN to finish...")
 tx_receipt = w3.eth.wait_for_transaction_receipt(
     tx_hash
 )  # This wait our code to transaction hash go through
 # Now, we have sent a Transaction to Local Blockchain
-
+print("Deployed !!!...")
 
 # Interact and Working with contract
 # -> Contract address
 # -> contract ABI
 
 simple_storage = w3.eth.contract(address=tx_receipt.contractAddress, abi=abi)
-print(simple_storage.functions.retrieve().call())
+print(f"Initial Stored value: ${simple_storage.functions.retrieve().call()}")
 store_txn = simple_storage.functions.store(33333).buildTransaction(
     {
         "gasPrice": w3.eth.gas_price,
@@ -99,6 +103,7 @@ store_txn = simple_storage.functions.store(33333).buildTransaction(
 
 signed_store_txn = w3.eth.account.sign_transaction(store_txn, private_key=private_key)
 send_store_tx = w3.eth.send_raw_transaction(signed_store_txn.rawTransaction)
+print("Updating stored Value")
 txn_receipt = w3.eth.wait_for_transaction_receipt(send_store_tx)
 
 print(simple_storage.functions.retrieve().call())
