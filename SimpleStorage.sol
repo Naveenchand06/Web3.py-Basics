@@ -14,8 +14,9 @@ contract SimpleStorage {
 
     mapping(string => uint256) public nameToFavNum;
 
-    function store(uint256 _favNum) public {
+    function store(uint256 _favNum) public returns (uint256) {
         favNum = _favNum;
+        return _favNum;
     }
 
     function retrieve() public view returns (uint256) {

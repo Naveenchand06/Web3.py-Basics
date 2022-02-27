@@ -79,3 +79,26 @@ tx_receipt = w3.eth.wait_for_transaction_receipt(
     tx_hash
 )  # This wait our code to transaction hash go through
 # Now, we have sent a Transaction to Local Blockchain
+
+
+# Interact and Working with contract
+# -> Contract address
+# -> contract ABI
+
+simple_storage = w3.eth.contract(address=tx_receipt.contractAddress, abi=abi)
+print(simple_storage.functions.retrieve().call())
+store_txn = simple_storage.functions.store(33333).buildTransaction(
+    {
+        "gasPrice": w3.eth.gas_price,
+        "chainId": chain_id,
+        "from": my_address,
+        "nonce": nonce + 1,
+    }
+)
+
+
+signed_store_txn = w3.eth.account.sign_transaction(store_txn, private_key=private_key)
+send_store_tx = w3.eth.send_raw_transaction(signed_store_txn.rawTransaction)
+txn_receipt = w3.eth.wait_for_transaction_receipt(send_store_tx)
+
+print(simple_storage.functions.retrieve().call())
