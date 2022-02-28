@@ -4,6 +4,7 @@
 
 - This file contains code to deploy a contract using Web3.py.
 - How to make a transaction?
+- How to sign a contract using web.py?
 - How to call a function in a contract?
 - How to change the state of the contract?
 - Comments for each line of code explain in detail about what the code does.
