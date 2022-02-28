@@ -2,7 +2,7 @@
 
 ## Contents
 
-- This file contains code to deploy a contract using Web3.py.
+- This file(deploy.js) contains code to deploy a contract using Web3.py.
 - How to make a transaction?
 - How to sign a contract using web.py?
 - How to call a function in a contract?
