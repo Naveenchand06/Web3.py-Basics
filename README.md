@@ -12,4 +12,4 @@
 - Reach me @ 📫 **naveenchand0606@gmail.com**
 
 <p><a href="https://twitter.com/naveenchand0606"><img src="https://cdn.cdnlogo.com/logos/t/96/twitter-icon.svg" style=height="65" width="65"></a></p>
-<p><a href="https://cdnlogo.com/logo/discord_39232.html"><img src="https://cdn.cdnlogo.com/logos/d/64/discord.png" style=height="65" width="65"></a></p>
+<!-- <p><a href="https://cdnlogo.com/logo/discord_39232.html"><img src="https://cdn.cdnlogo.com/logos/d/64/discord.png" style=height="65" width="65"></a></p> -->
